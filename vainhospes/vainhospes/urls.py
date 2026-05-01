@@ -17,8 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from vainstorage.views import page_not_found
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('goods/', include('vainstorage.urls'))
+    path('vainstorage/', include('vainstorage.urls'))
 ]
+
+handler404 = page_not_found
