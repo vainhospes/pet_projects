@@ -1,5 +1,7 @@
-from django.http import HttpResponse, HttpResponseNotFound, Http404
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseNotFound, Http404, HttpResponseRedirect
+from django.shortcuts import render, redirect
+from django.urls import reverse
+
 
 # Create your views here.
 def home(request):
@@ -14,7 +16,9 @@ def product(request, product_id):
 
 def archive(request, year):
     if year > 2026:
-        raise Http404()
+        url_redirect = reverse('clothes', args=('winter',))
+
+        return redirect(url_redirect)
 
     return HttpResponse(f"<h1>Архив года: {year}</h1>")
 
