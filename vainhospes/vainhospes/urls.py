@@ -21,7 +21,7 @@ from vainstorage.views import page_not_found
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('vainstorage/', include('vainstorage.urls'))
+    path('', include('vainstorage.urls'))
 ]
 
 handler404 = page_not_found

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for clothe in clothes %}
+    {% if clothe.season == season or season == "all" %}
+    <ul>
+        <li>Одежда: {{clothe.name}}</li>
+        <li>Цена: {{clothe.price}} $</li>
+        {% autoescape off %}
+        <li>Описание: {{clothe.description|linebreaks|truncatewords:20}}</li>
+        {% endautoescape %}
+
+    </ul>
+    {% endif %}
+        {% if forloop.last %}
+        <h3>Конец списка</h3>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

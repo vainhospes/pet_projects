@@ -1,0 +1,14 @@
+<header class="header">
+    <div class="container">
+        <a href="/" class="logo">Мой Магазин</a>
+        <nav class="nav">
+            <ul class="nav__list">
+                {% for season in seasons %}
+                    <li class = "nav__item">
+                        <a href="{% url 'clothes' season.slug %}" class="nav__link">{{season.name}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+</header>
