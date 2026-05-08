@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
     {% for clothe in clothes %}
-    {% if clothe.season == season or season == "all" %}
     <ul>
-        <li>Одежда: {{clothe.name}}</li>
-        <li>Цена: {{clothe.price}} $</li>
+            <li>Одежда: {{clothe.name}}</li>
+            <li>Цена: {{clothe.sell_price}} ₸</li>
         {% autoescape off %}
-        <li>Описание: {{clothe.description|linebreaks|truncatewords:20}}</li>
+            <li>Описание: {{clothe.description|linebreaks|truncatewords:20}}</li>
         {% endautoescape %}
-
+            <div></div>
+            <p><a href="{{ clothe.get_absolute_url }}">Смотреть Товар</a></p>
     </ul>
-    {% endif %}
         {% if forloop.last %}
         <h3>Конец списка</h3>
         {% endif %}

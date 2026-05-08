@@ -1,9 +1,11 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404, HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template.defaultfilters import upper
 from django.template.loader import render_to_string
 from django.urls import reverse
+from jedi.third_party.typeshed.stubs.pyasn1.pyasn1.type.tag import Tag
 
+from vainstorage.models import Product, Season, TagProduct
 
 # Create your views here.
 menu = [{'title': 'О нас', 'url_name': 'about'},
@@ -67,18 +69,39 @@ def contact(request):
 def login(request):
     return HttpResponse("ВХОД В ЛОГИН")
 
-def clothes(request, season):
+def show_clothes(request, clothe_season):
+    seasons = Season.objects.filter(slug__in=[clothe_season, 'all'] )
+    clothes = Product.available.filter(season__in=seasons)
+
     data = {
         'title': "Одежда",
         "menu": menu,
-        'clothes': db_clothes,
-        'season': season,
+        'clothes': clothes,
+        'season': clothe_season,
     }
     return render(request, 'vainstorage/clothes.html', context = data)
 
-def product(request, product_slug, product_id):
-    data_product = {'product_slug': upper(product_slug), 'product_id': product_id, 'colours': ['red', 'green', 'blue']}
+def show_product(request, product_slug):
+    product = get_object_or_404(Product, slug=product_slug)
+
+    data_product = {
+        'title': product.name,
+        'menu': menu,
+        'product': product,
+    }
+
     return render(request, 'vainstorage/product.html', data_product)
+
+def show_tag_clothes(request, tag_clothes):
+    tag = get_object_or_404(TagProduct, slug=tag_clothes)
+    clothes = tag.tags.filter(is_available=Product.available.AVAILABLE)
+    data = {
+        'title': tag.name,
+        'menu': menu,
+        'clothes': clothes,
+    }
+
+    return render(request, 'vainstorage/tag_clothes.html', context=data)
 
 def archive(request, year):
     if year > 2026:

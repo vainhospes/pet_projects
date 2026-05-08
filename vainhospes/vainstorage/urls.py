@@ -3,7 +3,7 @@ from django.urls import path, include, re_path, register_converter
 from . import converters
 from . import views
 
-register_converter(converters.FourDigitYearConverter, 'year4')
+# register_converter(converters.FourDigitYearConverter, 'year4')
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -11,7 +11,7 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('login/', views.login, name='login'),
     path('add_good/', views.add_good, name='add_good'),
-    path('clothes/<slug:season>/', views.clothes, name='clothes'),
-    path('product/<slug:product_slug>/<int:product_id>/', views.product, name='product'),
-
+    path('clothes/<slug:clothe_season>/', views.show_clothes, name='clothes'),
+    path('product/<slug:product_slug>/', views.show_product, name='product'),
+    path('tag/<slug:tag_slug>/', views.show_tag_clothes, name='tag'),
 ]

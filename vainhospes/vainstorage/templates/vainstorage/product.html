@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{product_slug}}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block content %}
+<h1>{{product.name}}</h1>
+
+{% if product.image %}
+<p><img src="{{product.photo.url}}"></p>
+{% endif %}
+
+{{product.description|linebreaks}}
+{% endblock %}
