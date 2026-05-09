@@ -1,8 +1,9 @@
 {% if tags %}
-    <p>Теги</p>
+    <p>Теги:</p>
 
     {% for tag in tags %}
-    <li><a href="{{ t.get_absolute_url }}">{{t.tag}}</a></li>
-
+    <ul>
+    <li><a href="{{ tag.get_absolute_url }}">{{tag.name}}</a></li>
+    </ul>
     {% endfor %}
 {% endif %}

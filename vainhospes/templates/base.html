@@ -1,7 +1,5 @@
 {% load static %}
-{% load vainstorage_tags%}
-
-{% get_seasons as seasons %}
+{% load vainstorage_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,10 +10,19 @@
 
     <link type="text/css" href="{% static 'vainstorage/css/styles.css' %}" rel="stylesheet" />
 </head>
+
 <body>
     <!-- Шапка и навигация -->
-    {% header_show_seasons %}
-    {% show_all_tags %}
+    <img src="#" class="logo">
+    <a href="{% url 'home' %}"><p>COMPANY</p></a>
+
+    <a href="{% url 'about' %}"><p>О НАС</p></a>
+    <a href="{% url 'show_seasons' %}"><p>ОДЕЖДА</p></a>
+    <a href="{% url 'contact' %}"><p>КОНТАКТЫ</p></a>
+
+    <a href="{% url 'login' %}"><p>ВОЙТИ</p></a>
+    <a href="{% url 'login' %}"><p>РЕГИСТРАЦИЯ</p></a>
+
     <!-- Основной контент -->
     <main class="main">
         <div class="container">
@@ -27,7 +34,7 @@
     <!-- Подвал -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Мой Магазин. Все права защищены.</p>
+            <p>&copy; 2026 COMPANY. Все права защищены.</p>
         </div>
     </footer>
 
